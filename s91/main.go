@@ -43,6 +43,9 @@ func testUsbInter(usb USB)  {
 	usb.end()
 }
 
+func (f FlashDisk) deleteData()  {
+	fmt.Println(f.name, "删除数据")
+}
 func main() {
 	/*
 	接口: 一组方法签名
@@ -62,6 +65,8 @@ func main() {
 
 	f1 := FlashDisk{name: "金士顿"}
 	fmt.Println(f1.name)
+	f1.deleteData()
+
 
 	testUsbInter(m1)  // usb = m1
 	testUsbInter(f1)  // usb = f1
@@ -73,6 +78,12 @@ func main() {
 	usb.start()
 	usb.end()
 
+	usb = f1
+	// usb.deleteData()　usb是访问不了f1里面的deleteData()方法
 
+	var arr [3]USB
+	arr[0] = f1
+	arr[1] = m1
+	fmt.Println(arr)
 
 }
